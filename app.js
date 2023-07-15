@@ -20,7 +20,7 @@ app.post('/', async (req, res) => {
 
         const productRecipe = await gptFetch({ prompt: messages });
 
-      res.send({ productRecipe });
+      res.send(productRecipe );
     } 
     catch (err) {
       console.error(err);
