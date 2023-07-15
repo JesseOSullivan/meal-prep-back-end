@@ -38,7 +38,7 @@ app.post('/', async (req, res) => {
      // const productsString = products.data.getProductsByNames.data.map(product => `${product.name}: ${product.price}`).join(', ');
   
       // Add the next user's message to the conversation history
-      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products from Woolworths (${productNames}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe.` });
+      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products from Woolworths (${productNames}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necesary` });
   
       gptResponse = await gptFetch({ prompt: messages });
   
