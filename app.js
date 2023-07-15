@@ -20,7 +20,7 @@ app.post('/', async (req, res) => {
   
       const productNames = ["cheese 1kg", "ham 100grams", "bread", "cheese slices 10pc"];
   
-      const products = await faunaFetch({
+      /*const products = await faunaFetch({
         query: `
           query GetProductsByNames($names: [String!]!) {
             getProductsByNames(names: $names) {
@@ -33,13 +33,13 @@ app.post('/', async (req, res) => {
           }
         `,
         variables: { names: productNames },
-      });
+      });*/
   
       // Convert the list of products into a string
-      const productsString = products.data.getProductsByNames.data.map(product => `${product.name}: ${product.price}`).join(', ');
+     // const productsString = products.data.getProductsByNames.data.map(product => `${product.name}: ${product.price}`).join(', ');
   
       // Add the next user's message to the conversation history
-      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products from Woolworths (${productsString}), I would like you to return a structured list of products we can use to efficiently make this recipe.` });
+      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products from Woolworths (${productNames}), I would like you to return a structured list of products we can use to efficiently make this recipe.` });
   
       gptResponse = await gptFetch({ prompt: messages });
   
