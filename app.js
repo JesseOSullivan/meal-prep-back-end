@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.post('/', async (req, res) => {
   const messages = [
-    { role: 'system', content: 'you are a food recipe expert. user will request how to make a dish or ask you to suggest one and you will provide a list' },
+    { role: 'system', content: 'you are a food recipe expert. user will request how to make a dish or ask you to suggest one and the response will be a json object the recipe under recipe and the instructions under instructions' },
     { role: 'user', content: req.body.content },
   ];
       
@@ -20,6 +20,8 @@ app.post('/', async (req, res) => {
     res.status(500).send('Error occurred while fetching from GPT-3');
   }
 });
+
+//messages.push({role: 'user', content:req})
 
 const port = 3000;
 app.listen(port, () => {
