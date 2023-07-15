@@ -8,18 +8,19 @@ app.use(express.json());
 
 app.post('/', async (req, res) => {
     const messages = [
-      { role: 'system', content: 'you are a food recipe expert. user will request how to make a dish or ask you to suggest one and the response will be a json object the list of ingedients needed under recipe and the instructions under instructions' },
+      { role: 'system', content: 'you are a food recipe expert. user will request how to make a dish or ask you to suggest one and list  ingedients needed under recipe and the instructions under instructions' },
       { role: 'user', content: req.body.content },
     ];
         
     try {
       const gptResponse = await gptFetch({ prompt: messages });
-      // Split the text by the first newline character
-      const [recipe, ...instructionsArr] = gptResponse.split('\n');
-      // Join the remaining parts back together for the instructions
-      const instructions = instructionsArr.join('\n');
-      // Send back a JSON object with the parsed recipe and instructions
-      res.json({ recipe, instructions });
+
+
+        messages.push({role: 'user', content:"using the below recipe as well as the below list of products from woolwroths I would like you to return a structured list of products we can use to efficiently make this recipe", gptResponse})
+
+        const productRecipe = await gptFetch({ prompt: messages });
+
+      res.json({ productRecipe });
     } 
     catch (err) {
       console.error(err);
