@@ -1,27 +1,27 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 
 exports.faunaFetch = async ({ query, variables }) => {
   console.log(`Running query: ${query}`);
   console.log(`With variables: ${JSON.stringify(variables)}`);
 
   try {
-    const response = await fetch('https://graphql.eu.fauna.com/graphql', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY}`,
-      },
-
-      body: JSON.stringify({
+    const response = await axios.post('https://graphql.eu.fauna.com/graphql', 
+      {
         query,
         variables,
-      }),
-    });
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY}`,
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const jsonResponse = await response.json();
+    const jsonResponse = response.data;
     console.log(`Response from Fauna: ${JSON.stringify(jsonResponse)}`);
     return jsonResponse;
   } catch (error) {
