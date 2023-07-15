@@ -10,6 +10,7 @@ exports.faunaFetch = async ({ query, variables }) => {
       headers: {
         Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY}`,
       },
+
       body: JSON.stringify({
         query,
         variables,
