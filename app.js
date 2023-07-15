@@ -1,6 +1,6 @@
 const express = require('express');
 const { gptFetch } = require('./gpt');
-import { faunaFetch } from './fauna';
+const { faunaFetch } = require('./fauna');
 const app = express();
 
 // Enable JSON body parsing
