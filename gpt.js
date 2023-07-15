@@ -7,7 +7,7 @@ exports.gptFetch = async ({ prompt }) => {
       const response = await axios.post(
         endpoint,
         {
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-4',
           messages: prompt
         },
         {
