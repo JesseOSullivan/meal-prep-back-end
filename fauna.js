@@ -17,10 +17,6 @@ exports.faunaFetch = async ({ query, variables }) => {
       }
     );
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
     const jsonResponse = response.data;
     console.log(`Response from Fauna: ${JSON.stringify(jsonResponse)}`);
     return jsonResponse;

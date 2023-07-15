@@ -1,27 +1,29 @@
 const axios = require('axios');
-
-exports.faunaFetch = async ({ query, variables }) => {
-  console.log(`Running query: ${query}`);
-  console.log(`With variables: ${JSON.stringify(variables)}`);
-
-  try {
-    const response = await axios.post('https://graphql.eu.fauna.com/graphql', 
-      {
-        query,
-        variables,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY}`,
+exports.gptFetch = async ({ prompt }) => {
+    const apiKey = process.env.AI_KEY
+    const endpoint = 'https://api.openai.com/v1/chat/completions'
+        
+    try {
+      const response = await axios.post(
+        endpoint,
+        {
+          model: 'gpt-3.5-turbo',
+          messages: prompt
         },
-      }
-    );
-
-    const jsonResponse = response.data;
-    console.log(`Response from Fauna: ${JSON.stringify(jsonResponse)}`);
-    return jsonResponse;
-  } catch (error) {
-    console.error(JSON.stringify(error, null, 2));
-    throw error; // throw the error again after logging
-  }
-};
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey,
+          },
+        }
+      );
+    
+      console.log('GPT-3 response:', response.data.choices[0].message.content);
+      return response.data.choices[0].message.content
+    
+    } catch (error) {
+      console.error(error);
+      throw error; // Throw the error to be caught by Express's error handler
+    }
+  };
+  
