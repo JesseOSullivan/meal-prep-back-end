@@ -14,8 +14,9 @@ app.post('/', async (req, res) => {
       
   try {
     const gptResponse = await gptFetch({ prompt: messages });
-    res.send(gptResponse);
-  } catch (err) {
+    res.send(gptResponse.instructions);
+  } 
+  catch (err) {
     console.error(err);
     res.status(500).send('Error occurred while fetching from GPT-3');
   }
