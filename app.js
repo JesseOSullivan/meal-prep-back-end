@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.post('/recipe', async (req, res) => {
     const messages = [
-      { role: 'system', content: 'you are a food recipe expert. user will request how to make a dish or ask you to suggest one then list the ingredients and the dish"'},
+      { role: 'system', content: 'you are a food expert. User will ask for a recipe or how to make something then you will provide 2 arrays. array of the ingredients needed and a string that is the recipe instructions"'},
       { role: 'user', content: req.body.content }
     ];
   
