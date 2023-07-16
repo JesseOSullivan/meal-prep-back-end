@@ -1,14 +1,14 @@
 const db = require('./db'); 
 
-const fetchProductData = async (names) => {
+const fetchProductData = async (products) => {
     try {
-      let query = db.select('product.id', 'product.name', 'product.price').from('product');
+      let query = db.select('product.id', 'product.name', 'product.price', 'product.link').from('product');
       
-      names.forEach((name, index) => {
+      products.forEach((product, index) => {
         if (index === 0) {
-          query = query.where('product.name', 'LIKE', `%${name}%`);
+          query = query.where('product.name', 'LIKE', `%${product.name}%`);
         } else {
-          query = query.orWhere('product.name', 'LIKE', `%${name}%`);
+          query = query.orWhere('product.name', 'LIKE', `%${product.name}%`);
         }
       });
   
@@ -20,5 +20,6 @@ const fetchProductData = async (names) => {
       throw error;
     }
   };
+
   
 module.exports = { fetchProductData };
