@@ -21,21 +21,23 @@ app.post('/recipe', async (req, res) => {
   
     try {
       let gptResponse = await gptFetch({ prompt: messages });
-      console.log("breka point 1 ");
-      console.log(gptResponse.data.ingredients)
+      
+      // assuming the gptResponse is a string, you might need to do some text parsing to get the separate instructions and ingredients
+      let parsedResponse = parseGptResponse(gptResponse);
 
+      console.log("break point 1");
+      console.log(parsedResponse.ingredients);
 
       // Add the assistant's message to the conversation history
-      messages.push({ role: 'assistant', content: gptResponse });
+      messages.push({ role: 'assistant', content: parsedResponse });
       
-      const productNames = ['ham',  'bread', 'cheese'];
-
+      const productNames = ['ham', 'bread', 'cheese'];
       const productData = await fetchProductData(productNames);
+      
       // Add the next user's message to the conversation history
-      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products (${productData}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necesary` });
+      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products (${productData}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necessary` });
      
       gptResponse = await gptFetch({ prompt: messages });
-  
       res.send(gptResponse);
     } 
     catch (err) {
@@ -43,6 +45,25 @@ app.post('/recipe', async (req, res) => {
       res.status(500).send(`Error occurred while fetching from GPT-3: ${err.message}`);
     }
 });
+
+// Parse GPT-3 response to get the separate instructions and ingredients
+function parseGptResponse(response) {
+  // Replace this with actual logic for parsing the response
+  let recipeInstructions = '';
+  let ingredients = [];
+
+  // Assuming the gptResponse is a string with a specific format, we can split it into instructions and ingredients
+  // You may need to modify this to fit your actual GPT-3 response format
+  if (typeof response === 'string') {
+    let parts = response.split('Ingredients: ');
+    if (parts.length === 2) {
+      recipeInstructions = parts[0].trim();
+      ingredients = parts[1].split(',').map(ingredient => ingredient.trim());
+    }
+  }
+
+  return { recipeInstructions, ingredients };
+}
 
 const port = 3000;
 app.listen(port, () => {
