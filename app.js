@@ -27,7 +27,7 @@ app.post('/recipe', async (req, res) => {
      
       gptResponse = await gptFetch({ prompt: messages });
   
-      res.send(gptResponse.choices[0].text);
+      res.send(gptResponse);
     } 
     catch (err) {
       console.error(err);
