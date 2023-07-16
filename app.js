@@ -21,13 +21,13 @@ app.post('/recipe', async (req, res) => {
   
     try {
       let gptResponse = await gptFetch({ prompt: messages });
-      
+      console.log("breka point 1 ")
+
 
       // Add the assistant's message to the conversation history
       messages.push({ role: 'assistant', content: gptResponse });
       
       const productNames = ['ham',  'bread', 'cheese'];
-      console.log("breka point 1 ")
 
       const productData = await fetchProductData(productNames);
       // Add the next user's message to the conversation history
