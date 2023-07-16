@@ -21,10 +21,10 @@ app.post('/recipe', async (req, res) => {
       const productNames = ['ham',  'bread', 'cheese'];
 
       const productData = await fetchProductData(productNames);
-  
+     console.log("breka point 1 ")
       // Add the next user's message to the conversation history
       messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products (${productData}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necesary` });
-  
+     
       gptResponse = await gptFetch({ prompt: messages });
   
       res.send(gptResponse.choices[0].text);
