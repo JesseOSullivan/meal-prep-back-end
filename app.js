@@ -39,7 +39,7 @@ app.post('/recipe', async (req, res) => {
       
       let jsonString = JSON.stringify(productData);
 
-      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products (${jsonString}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necesary return it as an array whith each array including the product name, amt and link use the links are from the object above also add the instructions ` });
+      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products (${jsonString}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necesary return it as anwith the property name products array whith each array including the product name, amt and link use the links are from the object above also add the instructions ` });
 
       gptResponse = await gptFetch({ prompt: messages });
   

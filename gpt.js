@@ -1,6 +1,6 @@
 const axios = require('axios');
 exports.gptFetch = async ({ prompt }) => {
-    const apiKey = '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'
+    const apiKey = process.env.AI_KEY;
     const endpoint = 'https://api.openai.com/v1/chat/completions'
         
     try {
