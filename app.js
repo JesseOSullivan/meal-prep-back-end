@@ -14,9 +14,10 @@ app.post('/recipe', async (req, res) => {
   
     try {
       let gptResponse = await gptFetch({ prompt: messages });
-  
+      
+
       // Add the assistant's message to the conversation history
-      messages.push({ role: 'assistant', content: gptResponse.choices[0].text });
+      messages.push({ role: 'assistant', content: gptResponse });
       
       const productNames = ['ham',  'bread', 'cheese'];
 
