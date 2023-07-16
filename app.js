@@ -3,8 +3,15 @@ const { gptFetch } = require('./gpt');
 const app = express();
 const { fetchProductData } = require('./productModel');
 
+
 // Enable JSON body parsing
 app.use(express.json());
+app.use((req, res, next) => {
+
+res.header('Access-Control-Allow-Origin', '*');
+res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+next();
+});
 
 app.post('/recipe', async (req, res) => {
     const messages = [
@@ -20,9 +27,9 @@ app.post('/recipe', async (req, res) => {
       messages.push({ role: 'assistant', content: gptResponse });
       
       const productNames = ['ham',  'bread', 'cheese'];
+      console.log("breka point 1 ")
 
       const productData = await fetchProductData(productNames);
-     console.log("breka point 1 ")
       // Add the next user's message to the conversation history
       messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products (${productData}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necesary` });
      
