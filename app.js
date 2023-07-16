@@ -17,11 +17,13 @@ app.post('/recipe', async (req, res) => {
   
       // Add the assistant's message to the conversation history
       messages.push({ role: 'assistant', content: gptResponse });
-  
+      
+      const productNames = ['ham',  'bread', 'cheese'];
+
       const productData = await fetchProductData(productNames);
   
       // Add the next user's message to the conversation history
-      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products from Woolworths (${productNames}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necesary` });
+      messages.push({ role: 'user', content: `Using the above recipe as well as the following list of products from Woolworths (${productData}), I would like you to return a structured list of products from the list provided we can use to efficiently make this recipe. Only use what is necesary` });
   
       gptResponse = await gptFetch({ prompt: messages });
   
