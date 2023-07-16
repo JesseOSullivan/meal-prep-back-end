@@ -1,0 +1,79 @@
+  ]
+}%                                                                                          
+jesseosullivan@Jesses-MacBook-Pro meal-prep-back-end % curl -X POST -H "Content-Type: application/json" -d '{"content": "recipe for a tuscan pasta"}' http://localhost:3000/recipe
+
+{
+  "ingredients": [
+    {
+      "name": "Olive oil",
+      "amount": "2 tablespoons",
+      "link": ""
+    },
+    {
+      "name": "Garlic",
+      "amount": "3 cloves, minced",
+      "link": "https://www.woolworths.com.au/shop/productdetails/345678/garlic-bulb"
+    },
+    {
+      "name": "Red pepper flakes",
+      "amount": "1/2 teaspoon",
+      "link": ""
+    },
+    {
+      "name": "Cherry tomatoes",
+      "amount": "2 cups, halved",
+      "link": ""
+    },
+    {
+      "name": "Fresh spinach",
+      "amount": "4 cups, packed",
+      "link": ""
+    },
+    {
+      "name": "Salt",
+      "amount": "1 teaspoon",
+      "link": "https://www.woolworths.com.au/shop/productdetails/123456/coles-sea-salt"
+    },
+    {
+      "name": "Black pepper",
+      "amount": "1/2 teaspoon",
+      "link": ""
+    },
+    {
+      "name": "Penne pasta",
+      "amount": "8 ounces",
+      "link": ""
+    },
+    {
+      "name": "Grated Parmesan cheese",
+      "amount": "1/2 cup",
+      "link": ""
+    },
+    {
+      "name": "Fresh basil",
+      "amount": "1/4 cup, chopped",
+      "link": ""
+    },
+    {
+      "name": "Lemon juice",
+      "amount": "1 tablespoon",
+      "link": ""
+    }
+  ],
+  "instructions": "1. Cook the penne pasta according to package instructions.\n\n2. In a large skillet, heat the olive oil over medium heat.\n\n3. Add the minced garlic and red pepper flakes. Sauté for about 1 minute until fragrant.\n\n4. Add the halved cherry tomatoes and cook for 3-4 minutes until they start to soften.\n\n5. Stir in the fresh spinach and cook until wilted.\n\n6. Season with salt and black pepper.\n\n7. Drain the cooked pasta and add it to the skillet. Toss well to coat the pasta with the sauce.\n\n8. Remove from heat and sprinkle grated Parmesan cheese over the pasta.\n\n9. Add the fresh chopped basil and drizzle with lemon juice.\n\n10. Toss well to combine all the ingredients.\n\n11. Serve warm and enjoy your Tuscan pasta!"
+  ,
+  "ingredientNoAmt": [
+    "Olive oil",
+    "Garlic",
+    "Red pepper flakes",
+    "Cherry tomatoes",
+    "Fresh spinach",
+    "Salt",
+    "Black pepper",
+    "Penne pasta",
+    "Grated Parmesan cheese",
+    "Fresh basil",
+    "Lemon juice"
+  ]
+}%                                                                                          
+jesseosullivan@Jesses-MacBook-Pro meal-prep-back-end % 

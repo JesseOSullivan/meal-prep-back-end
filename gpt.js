@@ -1,13 +1,13 @@
 const axios = require('axios');
 exports.gptFetch = async ({ prompt }) => {
-    const apiKey = process.env.AI_KEY;
+    const apiKey = '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'
     const endpoint = 'https://api.openai.com/v1/chat/completions'
         
     try {
       const response = await axios.post(
         endpoint,
         {
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-3.5-turbo-16k-0613',
           messages: prompt
         },
         {
