@@ -22,6 +22,7 @@ app.post('/recipe', async (req, res) => {
     try {
       let gptResponse = await gptFetch({ prompt: messages });
       console.log("breka point 1 ");
+      console.log(gptResponse.data.ingredients)
 
 
       // Add the assistant's message to the conversation history
