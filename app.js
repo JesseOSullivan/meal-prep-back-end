@@ -15,8 +15,8 @@ next();
 
 app.post('/recipe', async (req, res) => {
     const messages = [
-      { role: 'system', content: 'you are a food expert. User will ask for a recipe or how to make something then you will provide 2 arrays. array of the ingredients needed and a string that is the recipe instructions"'},
-      { role: 'user', content: req.body.content }
+        { role: 'system', content: 'you are a food expert. User will request a recipe or instructions. Please provide a complete response with the recipe and ingredients in separate properties.' },
+        { role: 'user', content: req.body.content }
     ];
   
     try {
