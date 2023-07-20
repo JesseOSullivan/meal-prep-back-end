@@ -1,7 +1,7 @@
 const express = require('express');
-const { gptFetch } = require('./gpt');
+const { gptFetch } = require('./external/gpt');
 const app = express();
-const { fetchProductData } = require('./productModel');
+const { fetchProductData } = require('./models/productModel');
 
 
 // Enable JSON body parsing
