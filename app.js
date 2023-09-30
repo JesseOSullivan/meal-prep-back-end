@@ -17,7 +17,7 @@ app.post('/get-gpt-response', async (req, res) => {
         const response = await axios.post(
             endpoint,
             {
-                model: 'gpt-4-32k-0314',
+                model: 'gpt-4-0314	',
                 messages: [{ role: 'user', content: prompt }]
             },
             {
