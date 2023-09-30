@@ -22,7 +22,7 @@ app.post('/api/openai', async (req, res) => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer YOUR_OPENAI_API_KEY' // Replace with your OpenAI key
+                    'Authorization': 'Bearer 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' // Replace with your OpenAI key
                 }
             }
         );
