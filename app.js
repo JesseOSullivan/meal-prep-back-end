@@ -22,7 +22,7 @@ app.post('/api/openai', async (req, res) => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer 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' // Replace with your OpenAI key
+                    'Authorization': 'Bearer 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' // Replace with your OpenAI key
                 }
             }
         );
