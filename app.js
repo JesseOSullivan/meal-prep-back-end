@@ -3,7 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());  // Enable CORS for all routes
+app.use(cors());  // Enable CORS for alssl routes
 app.use(express.json());
 
 app.post('/api/openai', async (req, res) => {
