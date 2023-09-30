@@ -1,40 +1,39 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors');
 
 const app = express();
-app.use(cors());  // Enable CORS for alssl routes
-app.use(express.json());
 
-app.post('/api/openai', async (req, res) => {
-    const prompt = req.body.prompt;
+app.use(express.json()); 
 
+// Endpoint to get a response from GPT-3.
+app.post('/get-gpt-response', async (req, res) => {
     try {
+        const apiKey = process.env.AI_KEY;
+        const prompt = req.body.prompt;
+        
+        const endpoint = 'https://api.openai.com/v1/chat/completions';
         const response = await axios.post(
-            'https://api.openai.com/v1/chat/completions',
+            endpoint,
             {
                 model: 'gpt-3.5-turbo-16k-0613',
-                messages: [{
-                    role: 'user',
-                    content: prompt
-                }]
+                messages: [{ role: 'user', content: prompt }]
             },
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer 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' // Replace with your OpenAI key
-                }
+                    'Authorization': 'Bearer ' + apiKey,
+                },
             }
         );
 
-        res.json(response.data.choices[0].message.content);
+        const gptResponse = response.data.choices[0].message.content;
+        res.json({ response: gptResponse });
+
     } catch (error) {
-        console.error('Error calling OpenAI API:', error);
-        res.status(500).send('Error calling OpenAI API');
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
-const PORT = 5000;
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-});
+const PORT = 3001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
