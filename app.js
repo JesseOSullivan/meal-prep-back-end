@@ -7,8 +7,8 @@ const fs = require('fs');
 
 // Load SSL key and certificate
 const options = {
-    key: fs.readFileSync('key.key'),
-    cert: fs.readFileSync('cert.cert')
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
 };
 
 const app = express();
