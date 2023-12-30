@@ -1,16 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());  // Enable CORS for all routes
-
-app.use(express.json()); 
+app.use(cors()); // Enable CORS for all routes
+app.use(express.json());
 
 // Endpoint to get a response from GPT-3.
 app.post('/get-gpt-response', async (req, res) => {
     try {
-        const apiKey = process.env.AI_KEY;
+        const apiKey = process.env.OPENAI_API_KEY;
         const prompt = req.body.prompt;
         
         const endpoint = 'https://api.openai.com/v1/chat/completions';
@@ -23,25 +23,22 @@ app.post('/get-gpt-response', async (req, res) => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + apiKey,
+                    'Authorization': `Bearer ${apiKey}`,
                 },
             }
         );
 
         const gptResponse = response.data.choices[0].message.content;
         res.json({ response: gptResponse });
-
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error 500" });
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
 app.get('/api/hello', (req, res) => {
     res.json({ message: 'Hello, world!' });
 });
-
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
