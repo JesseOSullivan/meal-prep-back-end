@@ -2,6 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const https = require('https');
+const fs = require('fs');
+
+// Load SSL key and certificate
+const options = {
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+};
 
 const app = express();
 app.use(cors()); // Enable CORS for all routes
@@ -41,4 +49,7 @@ app.get('/api/hello', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Create HTTPS server
+https.createServer(options, app).listen(PORT, () => {
+    console.log(`HTTPS server running on port ${PORT}`);
+});
