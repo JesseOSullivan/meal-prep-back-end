@@ -33,7 +33,7 @@ app.post('/get-gpt-response', async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error 500" });
     }
 });
 
